@@ -58,22 +58,22 @@ love_messages = [
 ]
 
 # หน้าเว็บ
-st.title("🌹 ถึงเธอนะ " + her_name)
-st.write("วันนี้เธอเหนื่อยใช่มั้ย ส่งพลังใจและความคิดถึงไปให้นะครับ 🧑🏻‍❤️‍💋‍👩🏻")
+st.title("🌹 รักเธอนะ " + her_name)
+st.write("เมื่อวานเรารักเธอ วันนี้ก็รักเธอกว่าเมื่อวาน พรุ่งนี้รักเธอมากกว่าวันนี้")
 
 # แสดงวันที่
 today = datetime.date.today()
 st.write(f"📅 วันที่: {today.strftime('%d %B %Y')}")
 
 # ข้อความสุ่ม
-st.markdown("### ข้อความจากใจ 💌")
+st.markdown("### ข้อความจากใจของไตไต๋ 💌")
 st.success(random.choice(love_messages))
 
 # ปุ่มเพิ่มความน่ารัก
 if st.button("กดตรงนี้ 🪄"):
     st.balloons()
     # st.write("กลับมาคุยกันได้มั้ยครับ 😊")
-    st.write("อยากให้เธอจุ๊บจังเลยครับ😍")
+    st.write("รักนะครับเบบี๋ของเรา😛")
 
 # ลายเซ็น
 st.markdown("---")
