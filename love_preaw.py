@@ -102,7 +102,7 @@ st.success(random.choice(love_messages))
 if st.button("กดตรงนี้ 🪄"):
     st.balloons()
     # st.write("กลับมาคุยกันได้มั้ยครับ 😊")
-    st.write("รักนะครับเบบี๋ของเรา😛")
+    st.write("คิดถึงเบบี๋นะครับ😀")
 
 # ลายเซ็น
 st.markdown("---")
