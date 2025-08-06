@@ -41,12 +41,12 @@ love_messages = [
 # แสดงหน้าเว็บ
 st.set_page_config(page_title="💘 Love Letter to Preaw", page_icon="💌")
 st.markdown(
-    f"<h1 style='text-align: center; color: pink;'>🌹 คิดถึงนะ {her_name} 🌹</h1>",
+    f"<h1 style='text-align: center; color: pink;'>🌹 คิดถึงเรามั้ยครับ {her_name} AKA คนน่ารัก🌹</h1>",
     unsafe_allow_html=True
 )
 
 st.markdown(
-    "<h3 style='text-align: center;'>😛😛😛</h3>",
+    "<h3 style='text-align: center;'>💕💕💕</h3>",
     unsafe_allow_html=True
 )
 
