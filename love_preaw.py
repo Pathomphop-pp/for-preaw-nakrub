@@ -10,18 +10,19 @@ import random
 her_name = "เปรียวเปรี้ยว 💖"
 
 # วันแรกที่เจอกัน
-first_meet_date = datetime.date(2023, 7, 15)  # <<< ใส่วันจริงที่คุณเจอกันนะครับ
+first_meet_date = datetime.date(2025, 3, 9)  # <<< ใส่วันจริงที่คุณเจอกันนะครับ
 today = datetime.date.today()
 days_since = (today - first_meet_date).days
 
-# ข้อความรัก
-love_messages = [
-    "อย่าลืมสำลีก้านนะงับ",
-    "สู้ๆนะคนน่ารักทำรีพอร์ทก็ไม่มีอะไรแล้วงับมีแค่สอนงาน",
-    "อยากกินแซนด์วิชด้วยจังงับ",
-    "มีอะไรให้เราช่วยก็บอกนะงับ😊",
-    "https://www.youtube.com/watch?v=xkNAtS7_l9o&list=RDxkNAtS7_l9o&start_radio=1"
-]
+# ========================
+# 📖 โหลดข้อความจากไฟล์
+# ========================
+def load_messages(file_path="love_messages.txt"):
+    with open(file_path, "r", encoding="utf-8") as f:
+        messages = [line.strip() for line in f if line.strip()]
+    return messages
+
+love_messages = load_messages()
 
 # ========================
 # 🎀 ตกแต่งหน้าเว็บ
@@ -47,6 +48,18 @@ st.markdown(
 )
 
 st.markdown("<h3 style='text-align: center;'>💕💕💕</h3>", unsafe_allow_html=True)
+# ========================
+# 🎶 เพลงเปิดอัตโนมัติ
+# ========================
+st.markdown(
+    """
+    <div style="text-align: center;">
+        <iframe width="300" height="180" src="https://www.youtube.com/embed/dpCqGi21oOc?si=DW_dQCccPa8gYu_3&amp;controls=0" title="YouTube video player" 
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # ========================
 # 🎀 วันที่ และนับวัน
@@ -74,10 +87,11 @@ st.success(random.choice(love_messages))
 if st.button("💖 คลิกตรงนี้นะครับเปรียวเปรี้ยว 💖"):
     st.balloons()
     st.markdown("### 💕 ถึงยังไงเธอก็คือที่รักของเราทุกวันเลยนะครับ 💕")
-    st.image("preaw_preaw.gif", caption="รักเธอนะครับคนน่ารักของเรา")
+    st.image("preaw_preaw2.gif", caption="รักเธอนะครับคนน่ารักของเรา")
 
 # ========================
 # 🎀 ลายเซ็น
 # ========================
 st.markdown("---")
-st.caption("🌹")
+st.caption("💐")
+st.caption("ด้วยรักจาก ไตไต๋ 💕")
