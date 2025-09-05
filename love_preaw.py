@@ -54,8 +54,8 @@ st.markdown("<h3 style='text-align: center;'>💕💕💕</h3>", unsafe_allow_ht
 st.markdown(
     """
     <div style="text-align: center;">
-        <iframe width="300" height="180" src="https://www.youtube.com/embed/dpCqGi21oOc?si=DW_dQCccPa8gYu_3&amp;controls=0" title="YouTube video player" 
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="300" height="180" src="https://www.youtube.com/embed/xkNAtS7_l9o?autoplay=1&loop=1&playlist=xkNAtS7_l9o"
+        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     """,
     unsafe_allow_html=True
