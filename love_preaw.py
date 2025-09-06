@@ -10,9 +10,12 @@ import random
 her_name = "เปรียวเปรี้ยว 💖"
 
 # วันแรกที่เจอกัน
-first_meet_date = datetime.date(2025, 3, 9)  # <<< ใส่วันจริงที่คุณเจอกันนะครับ
+first_meet_date = datetime.date(2025, 3, 9)  # <<< วันที่เจอกัน
+# วันแรกที่คบกัน
+first_girlfriend_date = datetime.date(2025,9,5) # <<< วันที่เป็นแฟนกัน
 today = datetime.date.today()
 days_since = (today - first_meet_date).days
+days_girlfriend = (today - first_girlfriend_date)
 
 # ========================
 # 📖 โหลดข้อความจากไฟล์
@@ -54,13 +57,12 @@ st.markdown("<h3 style='text-align: center;'>💕💕💕</h3>", unsafe_allow_ht
 st.markdown(
     """
     <div style="text-align: center;">
-        <iframe width="300" height="180" src="https://www.youtube.com/embed/xkNAtS7_l9o?autoplay=1&loop=1&playlist=xkNAtS7_l9o"
+        <iframe width="300" height="180" src="https://www.youtube.com/embed/M8Ao4NeNhFE?si=0otN2MyeSdy6KoX9?autoplay=1&loop=1&playlist=xkNAtS7_l9o"
         frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     """,
     unsafe_allow_html=True
 )
-
 # ========================
 # 🎀 วันที่ และนับวัน
 # ========================
@@ -71,6 +73,11 @@ st.markdown(
 
 st.markdown(
     f"<p style='text-align: center; font-size: 20px; color: hotpink;'>💘 เรารู้จักกันมาแล้ว <b>{days_since} วัน</b> 💘</p>",
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    f"<p style='text-align: center; font-size: 20px; color: hotpink;'>💐 เราเป็นแฟนกันแล้ว <b>{days_girlfriend} วัน รู้มั้ยครับ</b> 💐</p>",
     unsafe_allow_html=True
 )
 
