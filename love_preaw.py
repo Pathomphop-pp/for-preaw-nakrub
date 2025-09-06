@@ -20,8 +20,10 @@ today = datetime.datetime.now()
 
 # จำนวนวัน
 days_since = (today.date() - first_meet_date).days
-# date_time_girlfriend = (today - first_girlfriend_date).days
-date_time_girlfriend = (today - first_girlfriend_date)
+diff = today - first_girlfriend_date
+days_girlfriend = diff.days
+hours_girlfriend, remainder = divmod(diff.seconds, 3600)
+minutes_girlfriend, seconds_girlfriend = divmod(remainder, 60)
 
 # ========================
 # 📖 โหลดข้อความจากไฟล์
@@ -63,7 +65,7 @@ st.markdown("<h3 style='text-align: center;'>💕💕💕</h3>", unsafe_allow_ht
 st.markdown(
     """
     <div style="text-align: center;">
-        <iframe width="300" height="180" src="https://www.youtube.com/embed/M8Ao4NeNhFE?autoplay=1&loop=1&playlist=xkNAtS7_l9o"
+        <iframe width="300" height="180" src="https://www.youtube.com/embed/M8Ao4NeNhFE?autoplay=1&loop=1&playlist=M8Ao4NeNhFE"
         frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     """,
@@ -83,7 +85,7 @@ st.markdown(
 )
 
 st.markdown(
-    f"<p style='text-align: center; font-size: 20px; color: hotpink;'>💐 เราเป็นแฟนกันแล้ว <b>{date_time_girlfriend} วัน รู้มั้ยครับ</b> 💐</p>",
+    f"<p style='text-align: center; font-size: 18px;'>💐 เราเป็นแฟนกันแล้วนะ {days_girlfriend} วัน {hours_girlfriend} ชั่วโมง {minutes_girlfriend} นาที</p>",
     unsafe_allow_html=True
 )
 
