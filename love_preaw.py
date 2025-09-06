@@ -46,7 +46,7 @@ h1, h2, h3, p {
 st.markdown(page_bg, unsafe_allow_html=True)
 
 st.markdown(
-    f"<h1 style='text-align: center; color: deeppink;'>🌹 คิดถึงเรามั้ยครับ {her_name} AKA คนน่ารัก 🌹</h1>",
+    f"<h1 style='text-align: center; color: deeppink;'>🌹 รักเธอนะครับคุณแฟน☺️ AKA คนน่ารัก 🌹</h1>",
     unsafe_allow_html=True
 )
 
@@ -93,8 +93,8 @@ st.success(random.choice(love_messages))
 # ========================
 if st.button("💖 คลิกตรงนี้นะครับเปรียวเปรี้ยว 💖"):
     st.balloons()
-    st.markdown("### 💕 ถึงยังไงเธอก็คือที่รักของเราทุกวันเลยนะครับ 💕")
-    st.image("preaw_preaw2.gif", caption="รักเธอนะครับคนน่ารักของเรา")
+    st.markdown("### 💕 เราจะมีแค่เธอนะคนน่ารัก 💕")
+    st.image("preaw_preaw2.gif", caption="คนนี้แฟนของผมครับ🧑🏻‍❤️‍💋‍👩🏻")
 
 # ========================
 # 🎀 ลายเซ็น
