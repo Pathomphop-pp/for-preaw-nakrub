@@ -20,7 +20,8 @@ today = datetime.datetime.now()
 
 # จำนวนวัน
 days_since = (today.date() - first_meet_date).days
-date_time_girlfriend = (today - first_girlfriend_date).days
+# date_time_girlfriend = (today - first_girlfriend_date).days
+date_time_girlfriend = (today - first_girlfriend_date)
 
 # ========================
 # 📖 โหลดข้อความจากไฟล์
