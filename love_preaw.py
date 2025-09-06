@@ -1,6 +1,7 @@
 import streamlit as st
 import datetime
 import random
+from zoneinfo import ZoneInfo
 
 # ========================
 # 🎀 ตั้งค่า
@@ -16,7 +17,7 @@ first_meet_date = datetime.date(2025, 3, 9)
 first_girlfriend_date = datetime.datetime(2025, 9, 5, 23, 55, 0)
 
 # วันนี้
-today = datetime.datetime.now()
+today = datetime.datetime.now(ZoneInfo("Asia/Bangkok"))
 
 # จำนวนวัน
 days_since = (today.date() - first_meet_date).days
