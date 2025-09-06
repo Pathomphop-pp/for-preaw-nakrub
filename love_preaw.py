@@ -95,21 +95,21 @@ st.markdown(
     f"<p style='text-align: center; font-size: 18px; color: deeppink;'>💐 เราเป็นแฟนกันแล้วนะ {days_girlfriend} วัน {hours_girlfriend} ชั่วโมง {minutes_girlfriend} นาที</p>",
     unsafe_allow_html=True
 )
-# ========================
-# 🎀 Progress Bar ความรัก
-# ========================
-# ตั้ง milestone ครบรอบ (เช่น 100 วันถัดไป)
-next_milestone = ((days_girlfriend // 100) + 1) * 100
-progress = days_girlfriend / next_milestone
+# # ========================
+# # 🎀 Progress Bar ความรัก
+# # ========================
+# # ตั้ง milestone ครบรอบ (เช่น 100 วันถัดไป)
+# next_milestone = ((days_girlfriend // 100) + 1) * 100
+# progress = days_girlfriend / next_milestone
 
-st.markdown("### 📊 Progress ความรักของเรา")
-st.progress(progress)
-st.markdown(
-    f"<p style='text-align:center; font-size:16px;'>"
-    f"อีก {next_milestone - days_girlfriend} วัน จะครบ {next_milestone} วัน 🎉"
-    f"</p>",
-    unsafe_allow_html=True
-)
+# st.markdown("### 📊 Progress ความรักของเรา")
+# st.progress(progress)
+# st.markdown(
+#     f"<p style='text-align:center; font-size:16px;'>"
+#     f"อีก {next_milestone - days_girlfriend} วัน จะครบ {next_milestone} วัน 🎉"
+#     f"</p>",
+#     unsafe_allow_html=True
+# )
 
 # ========================
 # 🎀 ปฏิทิน Anniversary
