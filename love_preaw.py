@@ -101,8 +101,6 @@ st.markdown(
 st.markdown("### 📅 ปฏิทิน Anniversary")
 
 anniversaries = {
-    "วันแรกที่เจอกัน": first_meet_date,
-    "วันแรกที่คบกัน": first_girlfriend_date.date(),
     "ครบ 100 วัน": first_girlfriend_date.date() + datetime.timedelta(days=100),
     "ครบ 1 ปี": first_girlfriend_date.date() + datetime.timedelta(days=365),
 }
