@@ -9,13 +9,18 @@ import random
 # ชื่อ
 her_name = "เปรียวเปรี้ยว 💖"
 
-# วันแรกที่เจอกัน
-first_meet_date = datetime.date(2025, 3, 9)  # <<< วันที่เจอกัน
-# วันแรกที่คบกัน
-first_girlfriend_date = datetime.date(2025,9,5,23,55,0) # <<< วันที่เป็นแฟนกัน
-today = datetime.date.today()
-days_since = (today - first_meet_date).days
-days_girlfriend = (today - first_girlfriend_date)
+# วันแรกที่เจอกัน (เก็บแค่วันที่)
+first_meet_date = datetime.date(2025, 3, 9)
+
+# วันแรกที่คบกัน (เก็บวัน + เวลา)
+first_girlfriend_date = datetime.datetime(2025, 9, 5, 23, 55, 0)
+
+# วันนี้
+today = datetime.datetime.now()
+
+# จำนวนวัน
+days_since = (today.date() - first_meet_date).days
+days_girlfriend = (today - first_girlfriend_date).days
 
 # ========================
 # 📖 โหลดข้อความจากไฟล์
@@ -57,7 +62,7 @@ st.markdown("<h3 style='text-align: center;'>💕💕💕</h3>", unsafe_allow_ht
 st.markdown(
     """
     <div style="text-align: center;">
-        <iframe width="300" height="180" src="https://www.youtube.com/embed/M8Ao4NeNhFE?si=0otN2MyeSdy6KoX9?autoplay=1&loop=1&playlist=xkNAtS7_l9o"
+        <iframe width="300" height="180" src="https://www.youtube.com/embed/M8Ao4NeNhFE?autoplay=1&loop=1&playlist=xkNAtS7_l9o"
         frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     """,
