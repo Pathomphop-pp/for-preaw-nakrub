@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 her_name = "เปรียวเปรี้ยว 💖"
 
 # วันแรกที่เจอกัน (เก็บแค่วันที่)
-first_meet_date = datetime.date(2025, 3, 9,tzinfo=ZoneInfo("Asia/Bangkok"))
+first_meet_date = datetime.date(2025, 3, 9)
 
 # วันแรกที่คบกัน (เก็บวัน + เวลา)
 first_girlfriend_date = datetime.datetime(2025, 9, 5, 23, 55, 0, tzinfo=ZoneInfo("Asia/Bangkok"))
