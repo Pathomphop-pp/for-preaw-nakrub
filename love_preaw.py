@@ -82,7 +82,7 @@ st.markdown(
 
 # วันแรกที่คบกัน
 st.markdown(
-    f"<p style='text-align: center; font-size: 18px;'>💞 วันแรกที่เราเป็นแฟนกันคือ <b>{first_girlfriend_date.strftime('%d %B %Y %H:%M')}</b></p>",
+    f"<p style='text-align: center; font-size: 18px; color: deeppink; '>💞 วันแรกที่เราเป็นแฟนกันคือ <b>{first_girlfriend_date.strftime('%d %B %Y %H:%M')}</b></p>",
     unsafe_allow_html=True
 )
 
@@ -92,7 +92,7 @@ st.markdown(
 )
 
 st.markdown(
-    f"<p style='text-align: center; font-size: 18px;'>💐 เราเป็นแฟนกันแล้วนะ {days_girlfriend} วัน {hours_girlfriend} ชั่วโมง {minutes_girlfriend} นาที</p>",
+    f"<p style='text-align: center; font-size: 18px; color: deeppink;'>💐 เราเป็นแฟนกันแล้วนะ {days_girlfriend} วัน {hours_girlfriend} ชั่วโมง {minutes_girlfriend} นาที</p>",
     unsafe_allow_html=True
 )
 
