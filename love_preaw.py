@@ -20,7 +20,7 @@ today = datetime.datetime.now()
 
 # จำนวนวัน
 days_since = (today.date() - first_meet_date).days
-days_girlfriend = (today - first_girlfriend_date).days
+date_time_girlfriend = (today - first_girlfriend_date).days
 
 # ========================
 # 📖 โหลดข้อความจากไฟล์
@@ -82,7 +82,7 @@ st.markdown(
 )
 
 st.markdown(
-    f"<p style='text-align: center; font-size: 20px; color: hotpink;'>💐 เราเป็นแฟนกันแล้ว <b>{days_girlfriend} วัน รู้มั้ยครับ</b> 💐</p>",
+    f"<p style='text-align: center; font-size: 20px; color: hotpink;'>💐 เราเป็นแฟนกันแล้ว <b>{date_time_girlfriend} วัน รู้มั้ยครับ</b> 💐</p>",
     unsafe_allow_html=True
 )
 
