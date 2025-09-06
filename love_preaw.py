@@ -12,7 +12,7 @@ her_name = "เปรียวเปรี้ยว 💖"
 # วันแรกที่เจอกัน
 first_meet_date = datetime.date(2025, 3, 9)  # <<< วันที่เจอกัน
 # วันแรกที่คบกัน
-first_girlfriend_date = datetime.date(2025,9,5) # <<< วันที่เป็นแฟนกัน
+first_girlfriend_date = datetime.date(2025,9,5,23,55,0) # <<< วันที่เป็นแฟนกัน
 today = datetime.date.today()
 days_since = (today - first_meet_date).days
 days_girlfriend = (today - first_girlfriend_date)
