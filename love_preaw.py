@@ -80,6 +80,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# วันแรกที่คบกัน
+st.markdown(
+    f"<p style='text-align: center; font-size: 18px;'>💞 วันแรกที่เราเป็นแฟนกันคือ <b>{first_girlfriend_date.strftime('%d %B %Y %H:%M')}</b></p>",
+    unsafe_allow_html=True
+)
+
 st.markdown(
     f"<p style='text-align: center; font-size: 20px; color: hotpink;'>💘 เรารู้จักกันมาแล้ว <b>{days_since} วัน</b> 💘</p>",
     unsafe_allow_html=True
