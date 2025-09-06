@@ -95,7 +95,24 @@ st.markdown(
     f"<p style='text-align: center; font-size: 18px; color: deeppink;'>💐 เราเป็นแฟนกันแล้วนะ {days_girlfriend} วัน {hours_girlfriend} ชั่วโมง {minutes_girlfriend} นาที</p>",
     unsafe_allow_html=True
 )
+# ========================
+# 🎀 ปฏิทิน Anniversary
+# ========================
+st.markdown("### 📅 ปฏิทิน Anniversary")
 
+anniversaries = {
+    "วันแรกที่เจอกัน": first_meet_date,
+    "วันแรกที่คบกัน": first_girlfriend_date.date(),
+    "ครบ 100 วัน": first_girlfriend_date.date() + datetime.timedelta(days=100),
+    "ครบ 1 ปี": first_girlfriend_date.date() + datetime.timedelta(days=365),
+}
+
+for title, date in anniversaries.items():
+    days_left = (date - today.date()).days
+    if days_left > 0:
+        st.markdown(f"💖 {title}: {date.strftime('%d %B %Y')} (อีก {days_left} วัน)")
+    else:
+        st.markdown(f"💖 {title}: {date.strftime('%d %B %Y')} (ผ่านมาแล้ว {abs(days_left)} วัน)")
 # ========================
 # 🎀 ข้อความรัก
 # ========================
