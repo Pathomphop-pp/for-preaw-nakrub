@@ -53,9 +53,9 @@ else:
 # คำนวณเวลาที่เหลือ
 countdown = datetime.datetime.combine(next_birthday, datetime.time(0, 0), tzinfo=ZoneInfo("Asia/Bangkok")) - today
 
-days_left = countdown.days
-hours_left, remainder = divmod(countdown.seconds, 3600)
-minutes_left, seconds_left = divmod(remainder, 60)
+days_left_birthday = countdown.days
+hours_left_birthday, remainder_birthday = divmod(countdown.seconds, 3600)
+minutes_left_birthday, seconds_left_birthday = divmod(remainder_birthday, 60)
 ####################################################################################################
 
 # ========================
@@ -157,7 +157,7 @@ st.markdown("### 🎂 อันนี้นับถอยหลังวัน�
 
 st.markdown(
     f"<p style='font-size:18px; text-align:center; color:purple;'>"
-    f"เหลืออีก <b>{days_left} วัน {hours_left} ชั่วโมง {minutes_left} นาที</b> "
+    f"เหลืออีก <b>{days_left_birthday} วัน {hours_left_birthday} ชั่วโมง {minutes_left_birthday} นาที</b> "
     f"ก็จะถึงวันเกิดของ {her_name} 🎉🎂</p>",
     unsafe_allow_html=True
 )
