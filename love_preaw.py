@@ -110,7 +110,39 @@ st.markdown(
 #     f"</p>",
 #     unsafe_allow_html=True
 # )
+# ========================
+# 🎂 นับถอยหลังวันเกิดแฟน
+# ========================
+st.markdown("### 🎂 นับถอยหลังวันเกิดแฟน")
 
+# กำหนดวันเกิดแฟน (เช่น 20 กันยายน)
+birthday_month = 9
+birthday_day = 20
+
+# วันเกิดปีนี้
+this_year_birthday = datetime.date(today.year, birthday_month, birthday_day)
+
+# ถ้าวันเกิดปีนี้ผ่านไปแล้ว → ใช้ปีหน้าแทน
+if this_year_birthday < today.date():
+    next_birthday = datetime.date(today.year + 1, birthday_month, birthday_day)
+else:
+    next_birthday = this_year_birthday
+
+# คำนวณเวลาที่เหลือ
+countdown = datetime.datetime.combine(next_birthday, datetime.time(0, 0), tzinfo=ZoneInfo("Asia/Bangkok")) - today
+
+days_left = countdown.days
+hours_left, remainder = divmod(countdown.seconds, 3600)
+minutes_left, seconds_left = divmod(remainder, 60)
+
+st.markdown(
+    f"<p style='font-size:18px; text-align:center; color:purple;'>"
+    f"เหลืออีก <b>{days_left} วัน {hours_left} ชั่วโมง {minutes_left} นาที</b> "
+    f"ก็จะถึงวันเกิดของ {her_name} 🎉🎂</p>",
+    unsafe_allow_html=True
+)
+
+st.progress((365 - days_left) / 365)  # bar ความใกล้วันเกิด
 # ========================
 # 🎀 ปฏิทิน Anniversary
 # ========================
