@@ -3,8 +3,8 @@ import datetime
 import random
 from zoneinfo import ZoneInfo
 
-import json
-import os
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 # ========================
 # 🎀 ตั้งค่า
@@ -172,61 +172,60 @@ st.markdown("### 💌 ข้อความจากใจของไตไต�
 st.success(random.choice(love_messages))
 ####################################################################################################
 # ========================
-# 💍 โหลดวันแต่งงานจากไฟล์ (ถ้ามี)
+# 🔑 ตั้งค่า Google Sheets
 # ========================
-def load_wedding_date(file_path="wedding_date.json"):
-    if os.path.exists(file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            return datetime.date.fromisoformat(data["wedding_date"])
-    return None
+scope = ["https://spreadsheets.google.com/feeds",
+         "https://www.googleapis.com/auth/drive"]
 
-def save_wedding_date(date, file_path="wedding_date.json"):
-    with open(file_path, "w", encoding="utf-8") as f:
-        json.dump({"wedding_date": date.isoformat()}, f, ensure_ascii=False, indent=2)
+creds = ServiceAccountCredentials.from_json_keyfile_name("service_account.json", scope)
+client = gspread.authorize(creds)
 
-# โหลดวันแต่งงานที่เคยบันทึกไว้
+# เปิด spreadsheet และ sheet แรก
+sheet = client.open("love_data").sheet1
+
+# ========================
+# 💍 โหลดวันแต่งงานจาก Sheet
+# ========================
+def load_wedding_date():
+    try:
+        date_str = sheet.acell("A1").value  # อ่าน cell A1
+        if date_str:
+            return datetime.date.fromisoformat(date_str)
+    except:
+        return None
+
+# ========================
+# 💍 บันทึกวันแต่งงานลง Sheet
+# ========================
+def save_wedding_date(date):
+    sheet.update("A1", date.isoformat())
+
+# ========================
+# 💖 Streamlit UI
+# ========================
+today = datetime.date.today()
+
 saved_wedding_date = load_wedding_date()
+default_wedding_date = saved_wedding_date if saved_wedding_date else today
 
-# ถ้ามีวันเก่า → ใช้เป็นค่า default
-default_wedding_date = saved_wedding_date if saved_wedding_date else today.date()
-
-# ช่องให้กรอกวันแต่งงาน
-st.markdown("### 💍 เลือกวันแต่งงานของเราตรงนี้สิงับ")
 wedding_date = st.date_input(
-    "เลือกวันแต่งงานของเราตามใจคนน่ารักเลย 💖",
+    "เลือกวันแต่งงานของเราตามใจ 💖",
     value=default_wedding_date,
-    min_value=first_girlfriend_date.date()
+    min_value=today
 )
 
-# ถ้าวันที่เปลี่ยน → บันทึกใหม่
 if wedding_date != saved_wedding_date:
     save_wedding_date(wedding_date)
 
-# แสดงผล
-if wedding_date > today.date():
-    days_to_wedding = (wedding_date - today.date()).days
-    st.markdown(
-        f"<p style='font-size:18px; text-align:center; color:green;'>"
-        f"อีก <b>{days_to_wedding} วัน</b> จะถึงวันแต่งงานของเรา 💍✨</p>",
-        unsafe_allow_html=True
-    )
-    progress_value = max(0.0, min(1.0, 1 - (days_to_wedding / 365)))
-    st.progress(progress_value)
-elif wedding_date == today.date():
-    st.markdown(
-        "<p style='font-size:20px; text-align:center; color:red;'>"
-        "💖 วันนี้คือวันแต่งงานของเราแล้วนะ 🎉💍</p>",
-        unsafe_allow_html=True
-    )
-    st.balloons()
+# แสดง countdown
+if wedding_date > today:
+    days_to_wedding = (wedding_date - today).days
+    st.write(f"อีก {days_to_wedding} วัน จะถึงวันแต่งงานของเรา 💍✨")
+elif wedding_date == today:
+    st.write("💖 วันนี้คือวันแต่งงานของเราแล้ว 🎉💍")
 else:
-    days_since_wedding = (today.date() - wedding_date).days
-    st.markdown(
-        f"<p style='font-size:18px; text-align:center; color:blue;'>"
-        f"เราแต่งงานกันแล้วนะ <b>{days_since_wedding} วันงับผม</b> 🥰</p>",
-        unsafe_allow_html=True
-    )
+    days_since = (today - wedding_date).days
+    st.write(f"เราแต่งงานกันมาแล้ว {days_since} วัน 🥰")
 ####################################################################################################
 # ========================
 # 🎀 ปุ่มพิเศษ
