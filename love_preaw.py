@@ -57,44 +57,6 @@ days_left_birthday = countdown.days
 hours_left_birthday, remainder_birthday = divmod(countdown.seconds, 3600)
 minutes_left_birthday, seconds_left_birthday = divmod(remainder_birthday, 60)
 ####################################################################################################
-####################################################################################################
-# ========================
-# 💍 วันแต่งงาน (ให้แฟนกรอกเอง)
-# ========================
-st.markdown("### 💍 วันแต่งงานของเรา")
-
-wedding_date = st.date_input(
-    "เลือกวันแต่งงานของเรา 💖",
-    value=datetime.date(today.year, today.month, today.day),  # ค่า default = วันนี้
-    min_value=first_girlfriend_date.date()  # อย่างน้อยต้องไม่ก่อนวันคบกัน
-)
-
-# ถ้ามีการเลือกแล้ว แสดงผล
-if wedding_date:
-    if wedding_date > today.date():
-        days_to_wedding = (wedding_date - today.date()).days
-        st.markdown(
-            f"<p style='font-size:18px; text-align:center; color:green;'>"
-            f"อีก <b>{days_to_wedding} วัน</b> จะถึงวันแต่งงานของเรา 💍✨</p>",
-            unsafe_allow_html=True
-        )
-        st.progress(1 - (days_to_wedding / 365))  # bar แสดงความใกล้ถึง
-    elif wedding_date == today.date():
-        st.markdown(
-            "<p style='font-size:20px; text-align:center; color:red;'>"
-            "💖 วันนี้คือวันแต่งงานของเราแล้วนะ 🎉💍</p>",
-            unsafe_allow_html=True
-        )
-        st.balloons()
-    else:
-        days_since_wedding = (today.date() - wedding_date).days
-        st.markdown(
-            f"<p style='font-size:18px; text-align:center; color:blue;'>"
-            f"เราแต่งงานกันมาแล้ว <b>{days_since_wedding} วัน</b> 🥰</p>",
-            unsafe_allow_html=True
-        )
-####################################################################################################
-
 # ========================
 # 🎀 ตกแต่งหน้าเว็บ
 # ========================
@@ -205,7 +167,43 @@ st.progress((365 - days_left) / 365)  # bar ความใกล้วันเ
 st.markdown("---")
 st.markdown("### 💌 ข้อความจากใจของไตไต๋:")
 st.success(random.choice(love_messages))
+####################################################################################################
+# ========================
+# 💍 วันแต่งงาน (ให้แฟนกรอกเอง)
+# ========================
+st.markdown("### 💍 วันแต่งงานของเรา")
 
+wedding_date = st.date_input(
+    "เลือกวันแต่งงานของเรา 💖",
+    value=datetime.date(today.year, today.month, today.day),  # ค่า default = วันนี้
+    min_value=first_girlfriend_date.date()  # อย่างน้อยต้องไม่ก่อนวันคบกัน
+)
+
+# ถ้ามีการเลือกแล้ว แสดงผล
+if wedding_date:
+    if wedding_date > today.date():
+        days_to_wedding = (wedding_date - today.date()).days
+        st.markdown(
+            f"<p style='font-size:18px; text-align:center; color:green;'>"
+            f"อีก <b>{days_to_wedding} วัน</b> จะถึงวันแต่งงานของเรา 💍✨</p>",
+            unsafe_allow_html=True
+        )
+        st.progress(1 - (days_to_wedding / 365))  # bar แสดงความใกล้ถึง
+    elif wedding_date == today.date():
+        st.markdown(
+            "<p style='font-size:20px; text-align:center; color:red;'>"
+            "💖 วันนี้คือวันแต่งงานของเราแล้วนะ 🎉💍</p>",
+            unsafe_allow_html=True
+        )
+        st.balloons()
+    else:
+        days_since_wedding = (today.date() - wedding_date).days
+        st.markdown(
+            f"<p style='font-size:18px; text-align:center; color:blue;'>"
+            f"เราแต่งงานกันมาแล้ว <b>{days_since_wedding} วัน</b> 🥰</p>",
+            unsafe_allow_html=True
+        )
+####################################################################################################
 # ========================
 # 🎀 ปุ่มพิเศษ
 # ========================
