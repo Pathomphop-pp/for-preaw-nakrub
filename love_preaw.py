@@ -187,7 +187,7 @@ creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
 client = gspread.authorize(creds)
 
 # เปิด Google Sheet
-sheet = client.open("love_data").sheet1
+sheet = client.open_by_key("1LG2wqUEfMdeonWDUfS7ADLXYMBiF2C1wYXKA0gEaFXw").sheet1
 # ========================
 # 💍 โหลดวันแต่งงานจาก Sheet
 # ========================
@@ -203,7 +203,7 @@ def load_wedding_date():
 # 💍 บันทึกวันแต่งงานลง Sheet
 # ========================
 def save_wedding_date(date):
-    sheet.update("A1", date.isoformat())
+    sheet.update("A1", [[date.isoformat()]])
 
 # ========================
 # 💖 Streamlit UI
