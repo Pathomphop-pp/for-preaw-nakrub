@@ -3,6 +3,9 @@ import datetime
 import random
 from zoneinfo import ZoneInfo
 
+import json
+import os
+
 # ========================
 # 🎀 ตั้งค่า
 # ========================
@@ -169,40 +172,60 @@ st.markdown("### 💌 ข้อความจากใจของไตไต�
 st.success(random.choice(love_messages))
 ####################################################################################################
 # ========================
-# 💍 วันแต่งงาน (ให้เปรียวเปรี้ยวรอก)
+# 💍 โหลดวันแต่งงานจากไฟล์ (ถ้ามี)
 # ========================
-st.markdown("### 💍 ลองเลือกวันแต่งงานของเราสิงับ")
+def load_wedding_date(file_path="wedding_date.json"):
+    if os.path.exists(file_path):
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return datetime.date.fromisoformat(data["wedding_date"])
+    return None
 
+def save_wedding_date(date, file_path="wedding_date.json"):
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump({"wedding_date": date.isoformat()}, f, ensure_ascii=False, indent=2)
+
+# โหลดวันแต่งงานที่เคยบันทึกไว้
+saved_wedding_date = load_wedding_date()
+
+# ถ้ามีวันเก่า → ใช้เป็นค่า default
+default_wedding_date = saved_wedding_date if saved_wedding_date else today.date()
+
+# ช่องให้กรอกวันแต่งงาน
+st.markdown("### 💍 เลือกวันแต่งงานของเราตรงนี้สิงับ")
 wedding_date = st.date_input(
-    "เลือกวันแต่งงานของเรา 💖",
-    value=datetime.date(today.year, today.month, today.day),  # ค่า default = วันนี้
-    min_value=first_girlfriend_date.date()  # อย่างน้อยต้องไม่ก่อนวันคบกัน
+    "เลือกวันแต่งงานของเราตามใจคนน่ารักเลย 💖",
+    value=default_wedding_date,
+    min_value=first_girlfriend_date.date()
 )
 
-# เลือกแล้วแสงผล
-if wedding_date:
-    if wedding_date > today.date():
-        days_to_wedding = (wedding_date - today.date()).days
-        st.markdown(
-            f"<p style='font-size:18px; text-align:center; color:green;'>"
-            f"อีก <b>{days_to_wedding} วัน</b> จะถึงวันแต่งงานของเรา 💍✨</p>",
-            unsafe_allow_html=True
-        )
-        st.progress(1 - (days_to_wedding / 365))  # bar แสดงความใกล้ถึง
-    elif wedding_date == today.date():
-        st.markdown(
-            "<p style='font-size:20px; text-align:center; color:red;'>"
-            "💖 วันนี้คือวันแต่งงานของเราแล้วนะ 🎉💍</p>",
-            unsafe_allow_html=True
-        )
-        st.balloons()
-    else:
-        days_since_wedding = (today.date() - wedding_date).days
-        st.markdown(
-            f"<p style='font-size:18px; text-align:center; color:blue;'>"
-            f"เราแต่งงานกันมาแล้ว <b>{days_since_wedding} วัน</b> 🥰</p>",
-            unsafe_allow_html=True
-        )
+# ถ้าวันที่เปลี่ยน → บันทึกใหม่
+if wedding_date != saved_wedding_date:
+    save_wedding_date(wedding_date)
+
+# แสดงผล
+if wedding_date > today.date():
+    days_to_wedding = (wedding_date - today.date()).days
+    st.markdown(
+        f"<p style='font-size:18px; text-align:center; color:green;'>"
+        f"อีก <b>{days_to_wedding} วัน</b> จะถึงวันแต่งงานของเรา 💍✨</p>",
+        unsafe_allow_html=True
+    )
+    st.progress(1 - (days_to_wedding / 365))
+elif wedding_date == today.date():
+    st.markdown(
+        "<p style='font-size:20px; text-align:center; color:red;'>"
+        "💖 วันนี้คือวันแต่งงานของเราแล้วนะ 🎉💍</p>",
+        unsafe_allow_html=True
+    )
+    st.balloons()
+else:
+    days_since_wedding = (today.date() - wedding_date).days
+    st.markdown(
+        f"<p style='font-size:18px; text-align:center; color:blue;'>"
+        f"เราแต่งงานกันแล้วนะ <b>{days_since_wedding} วันงับผม</b> 🥰</p>",
+        unsafe_allow_html=True
+    )
 ####################################################################################################
 # ========================
 # 🎀 ปุ่มพิเศษ
