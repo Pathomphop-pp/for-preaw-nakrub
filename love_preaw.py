@@ -177,12 +177,13 @@ st.success(random.choice(love_messages))
 scope = ["https://spreadsheets.google.com/feeds",
          "https://www.googleapis.com/auth/drive"]
 
-creds = ServiceAccountCredentials.from_json_keyfile_name("love-preaw-7b073f771b82.json", scope)
+# โหลด JSON จาก secrets
+creds_dict = json.loads(st.secrets["google"]["service_account"])
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 
-# เปิด spreadsheet และ sheet แรก
-sheet = client.open("love_data").sheet1
-
+sheet = client.open("เปรี้ยวเท่านั้น").sheet1
 # ========================
 # 💍 โหลดวันแต่งงานจาก Sheet
 # ========================
