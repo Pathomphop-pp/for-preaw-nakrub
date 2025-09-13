@@ -181,7 +181,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("service_account.json",
 client = gspread.authorize(creds)
 
 # เปิด spreadsheet และ sheet แรก
-sheet = client.open("love_data").sheet1
+sheet = client.open("เปรี้ยวเท่านั้น").sheet1
 
 # ========================
 # 💍 โหลดวันแต่งงานจาก Sheet
