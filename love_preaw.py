@@ -4,7 +4,7 @@ import random
 from zoneinfo import ZoneInfo
 
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.service_account import Credentials
 import json
 
 # ========================
@@ -178,12 +178,15 @@ st.success(random.choice(love_messages))
 scope = ["https://spreadsheets.google.com/feeds",
          "https://www.googleapis.com/auth/drive"]
 
-# โหลด JSON จาก secrets
+# โหลด JSON จาก st.secrets
 creds_dict = json.loads(st.secrets["google"]["service_account"])
+
+# สร้าง Credentials และ authorize
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
 client = gspread.authorize(creds)
 
+# เปิด Google Sheet
 sheet = client.open("เปรี้ยวเท่านั้น").sheet1
 # ========================
 # 💍 โหลดวันแต่งงานจาก Sheet
