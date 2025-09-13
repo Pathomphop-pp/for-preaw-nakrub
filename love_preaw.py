@@ -229,7 +229,6 @@ if wedding_date > today.date():
         f"อีก <b>{days_to_wedding} วัน</b> จะถึงวันแต่งงานของเรา 💍✨</p>",
         unsafe_allow_html=True
     )
-    st.progress(1 - (days_to_wedding / 365))
     progress_value = max(0.0, min(1.0, 1 - (days_to_wedding / 365)))
     st.progress(progress_value)
 elif wedding_date == today.date():
