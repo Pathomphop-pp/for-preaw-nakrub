@@ -222,15 +222,31 @@ wedding_date = st.date_input(
 if wedding_date != saved_wedding_date:
     save_wedding_date(wedding_date)
 
-# แสดง countdown
-if wedding_date > today:
-    days_to_wedding = (wedding_date - today).days
-    st.write(f"อีก {days_to_wedding} วัน จะถึงวันแต่งงานของเรา 💍✨")
-elif wedding_date == today:
-    st.write("💖 วันนี้คือวันแต่งงานของเราแล้ว 🎉💍")
+# แสดงผล
+if wedding_date > today.date():
+    days_to_wedding = (wedding_date - today.date()).days
+    st.markdown(
+        f"<p style='font-size:18px; text-align:center; color:green;'>"
+        f"อีก <b>{days_to_wedding} วัน</b> จะถึงวันแต่งงานของเรา 💍✨</p>",
+        unsafe_allow_html=True
+    )
+    st.progress(1 - (days_to_wedding / 365))
+    progress_value = max(0.0, min(1.0, 1 - (days_to_wedding / 365)))
+    st.progress(progress_value)
+elif wedding_date == today.date():
+    st.markdown(
+        "<p style='font-size:20px; text-align:center; color:red;'>"
+        "💖 วันนี้คือวันแต่งงานของเราแล้วนะ 🎉💍</p>",
+        unsafe_allow_html=True
+    )
+    st.balloons()
 else:
-    days_since = (today - wedding_date).days
-    st.write(f"เราแต่งงานกันมาแล้ว {days_since} วัน 🥰")
+    days_since_wedding = (today.date() - wedding_date).days
+    st.markdown(
+        f"<p style='font-size:18px; text-align:center; color:blue;'>"
+        f"เราแต่งงานกันแล้วนะ <b>{days_since_wedding} วันงับผม</b> 🥰</p>",
+        unsafe_allow_html=True
+    )
 ####################################################################################################
 # ========================
 # 🎀 ปุ่มพิเศษ
