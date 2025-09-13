@@ -208,7 +208,6 @@ def save_wedding_date(date):
 # ========================
 # 💖 Streamlit UI
 # ========================
-today = datetime.date.today()
 
 saved_wedding_date = load_wedding_date()
 default_wedding_date = saved_wedding_date if saved_wedding_date else today
