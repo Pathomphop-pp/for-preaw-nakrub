@@ -187,7 +187,7 @@ creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
 client = gspread.authorize(creds)
 
 # เปิด Google Sheet
-sheet = client.open("เปรี้ยวเท่านั้น").sheet1
+sheet = client.open("love_data").sheet1
 # ========================
 # 💍 โหลดวันแต่งงานจาก Sheet
 # ========================
