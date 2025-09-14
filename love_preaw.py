@@ -213,7 +213,7 @@ saved_wedding_date = load_wedding_date()
 default_wedding_date = saved_wedding_date if saved_wedding_date else today
 
 wedding_date = st.date_input(
-    "เลือกวันแต่งงานของเราตามใจ 💖",
+    "เลือกวันแต่งงานของเราตามใจคนน่ารักเลยนะ 💖",
     value=default_wedding_date,
     min_value=today
 )
