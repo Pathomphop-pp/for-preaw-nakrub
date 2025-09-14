@@ -206,6 +206,8 @@ def save_wedding_date(date):
 saved_wedding_date = load_wedding_date()
 default_wedding_date = saved_wedding_date if saved_wedding_date else today
 
+st.markdown("### 🎂 อันนี้เป็นวันแต่งงานของเราทั้งคู่นะ💕")
+
 wedding_date = st.date_input(
     "เลือกวันแต่งงานของเราตามใจคนน่ารักเลยนะ 💖",
     value=default_wedding_date,
