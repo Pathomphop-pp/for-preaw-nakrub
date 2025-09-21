@@ -181,13 +181,14 @@ creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
 client = gspread.authorize(creds)
 
 # เปิด Google Sheet
-sheet = client.open_by_key("1LG2wqUEfMdeonWDUfS7ADLXYMBiF2C1wYXKA0gEaFXw").sheet1
+spreadSheet = client.open_by_key("1LG2wqUEfMdeonWDUfS7ADLXYMBiF2C1wYXKA0gEaFXw")
+sheet_wedding_day = spreadSheet.sheet1
 # ========================
 # 💍 โหลดวันแต่งงานจาก Sheet
 # ========================
 def load_wedding_date():
     try:
-        date_str = sheet.acell("A1").value  # อ่าน cell A1
+        date_str = sheet_wedding_day.acell("A1").value  # อ่าน cell A1
         if date_str:
             return datetime.date.fromisoformat(date_str)
     except:
@@ -197,7 +198,7 @@ def load_wedding_date():
 # 💍 บันทึกวันแต่งงานลง Sheet
 # ========================
 def save_wedding_date(date):
-    sheet.update("A1", [[date.isoformat()]])
+    sheet_wedding_day.update("A1", [[date.isoformat()]])
 
 # ========================
 # 💖 Streamlit UI
@@ -242,12 +243,17 @@ else:
         unsafe_allow_html=True
     )
 ####################################################################################################
+
 # ========================
-# 🎀 ข้อความรัก
+# 🎀 ลายเซ็น
 # ========================
 st.markdown("---")
-st.markdown("### 💌 ข้อความจากใจของไตไต๋:")
-st.success(random.choice(love_messages))
+answer = st.radio("❓ วันเกิดแฟนเปรี้ยววันไหนเอ่ย?", ["7 มีนาคม", "25 พฤศจิกายน", "24 พฤศจิกายน"])
+if answer == "25 พฤศจิกายน":
+    st.success("รักนะงับที่จำกันได้ เอ๊ะ? หรือกดหลายรอบกันนะ🥰")
+    st.balloons()
+else:
+    st.error("ผิดน้าา งอนๆๆๆ 💕")
 
 # ========================
 # 🎀 ปุ่มพิเศษ
@@ -257,9 +263,97 @@ if st.button("💖 คลิกตรงนี้นะครับเปรี�
     st.markdown("### 💕 เราจะมีแค่เธอนะคนน่ารัก 💕")
     st.image("preaw_preaw2.gif", caption="คนนี้แฟนของผมครับ🧑🏻‍❤️‍💋‍👩🏻")
 
-# ========================
-# 🎀 ลายเซ็น
-# ========================
+st.markdown("""
+<div class="hearts">
+  <span>💖</span>
+  <span>💞</span>
+  <span>💕</span>
+  <span>💘</span>
+  <span>💓</span>
+  <span>❤️</span>
+  <span>💗</span>
+  <span>💝</span>
+</div>
+
+<style>
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.hearts span {
+  position: absolute;
+  top: -10%;
+  font-size: 24px;
+  animation: fall 8s linear infinite;
+  opacity: 0.8;
+}
+
+/* สุ่มตำแหน่งและเวลาการร่วง */
+.hearts span:nth-child(1) { left: 10%; animation-delay: 0s; }
+.hearts span:nth-child(2) { left: 25%; animation-delay: 2s; font-size:28px; }
+.hearts span:nth-child(3) { left: 40%; animation-delay: 4s; font-size:20px; }
+.hearts span:nth-child(4) { left: 55%; animation-delay: 1s; }
+.hearts span:nth-child(5) { left: 70%; animation-delay: 3s; font-size:30px; }
+.hearts span:nth-child(6) { left: 85%; animation-delay: 5s; }
+.hearts span:nth-child(7) { left: 50%; animation-delay: 6s; font-size:22px; }
+.hearts span:nth-child(8) { left: 15%; animation-delay: 7s; font-size:26px; }
+
+@keyframes fall {
+  0% { transform: translateY(-10%); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("### 📝 บอร์ดข้อความของเราทั้งคู่นะ")
+
+sheet_chat = spreadSheet.worksheet("sheet2")
+message = st.text_area("มีอะไรในใจก็เขียนได้นะงับ 💕", "")
+# ตั้งชื่อฝั่งเรา
+MY_NAME = "เปรี้ยว"
+PARTNER_NAME = "ไตไต๋"
+
+# เลือกผู้ส่ง (ปกติหน้าเว็บเราเป็นเรา)
+sender = st.selectbox("คุณกำลังส่งข้อความเป็นใคร?", [MY_NAME, PARTNER_NAME])
+
+if st.button("ส่งข้อความ 💌"):
+    if message.strip():
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        sheet_chat.append_row([timestamp, sender, message])
+        st.success(f"ส่งข้อความเรียบร้อยแล้ว 💖 (โดย {sender})")
+    else:
+        st.error("กรุณาใส่ข้อความก่อนนะครับ 🥹")
+
+# แสดงข้อความแบบ Chat
+rows = sheet_chat.get_all_values()
 st.markdown("---")
-st.caption("💐")
+for row in rows:
+    timestamp = row[0] if len(row) > 0 else ""
+    sender_name = row[1] if len(row) > 1 else "ไม่ทราบชื่อ"
+    text = row[2] if len(row) > 2 else ""
+
+    if sender_name == MY_NAME:
+        # ข้อความเรา สีชมพู ขวา
+        st.markdown(
+            f"<p style='text-align:right; color:deeppink;'>"
+            f"🕒 <b>{timestamp}</b> — <b>{sender_name}</b><br>"
+            f"{text}</p>", 
+            unsafe_allow_html=True
+        )   
+    else:
+        # ข้อความแฟน สีม่วง ซ้าย
+        st.markdown(
+            f"<p style='text-align:left; color:purple;'>"
+            f"🕒 <b>{timestamp}</b> — <b>{sender_name}</b><br>"
+            f"{text}</p>", 
+            unsafe_allow_html=True
+        )
+
 st.caption("ด้วยรักจาก ไตไต๋ 💕")
