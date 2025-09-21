@@ -334,13 +334,14 @@ if st.button("ส่งข้อความ 💌"):
 # แสดงข้อความแบบ Chat
 rows = sheet_chat.get_all_values()
 st.markdown("---")
-for row in rows:
+for row in rows[-5:]:
     timestamp = row[0] if len(row) > 0 else ""
     sender_name = row[1] if len(row) > 1 else "ไม่ทราบชื่อ"
     text = row[2] if len(row) > 2 else ""
 
+    text = text.replace("\n", "<br>")
+
     if sender_name == MY_NAME:
-        # ข้อความเรา สีชมพู ขวา
         st.markdown(
             f"<p style='text-align:right; color:deeppink;'>"
             f"🕒 <b>{timestamp}</b> — <b>{sender_name}</b><br>"
@@ -348,12 +349,12 @@ for row in rows:
             unsafe_allow_html=True
         )   
     else:
-        # ข้อความแฟน สีม่วง ซ้าย
         st.markdown(
             f"<p style='text-align:left; color:purple;'>"
             f"🕒 <b>{timestamp}</b> — <b>{sender_name}</b><br>"
             f"{text}</p>", 
             unsafe_allow_html=True
         )
+
 
 st.caption("ด้วยรักจาก ไตไต๋ 💕")
