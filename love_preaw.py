@@ -33,12 +33,12 @@ minutes_girlfriend, seconds_girlfriend = divmod(remainder, 60)
 # ========================
 # 📖 โหลดข้อความจากไฟล์
 # ========================
-def load_messages(file_path="love_messages.txt"):
-    with open(file_path, "r", encoding="utf-8") as f:
-        messages = [line.strip() for line in f if line.strip()]
-    return messages
+# def load_messages(file_path="love_messages.txt"):
+#     with open(file_path, "r", encoding="utf-8") as f:
+#         messages = [line.strip() for line in f if line.strip()]
+#     return messages
 
-love_messages = load_messages()
+# love_messages = load_messages()
 
 ####################################################################################################
 # กำหนดวันเกิดเปรียวเปรี้ยว
