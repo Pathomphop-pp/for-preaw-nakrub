@@ -325,7 +325,7 @@ sender = st.selectbox("ใครกำลังส่งข้อความง
 
 if st.button("ส่งข้อความ 💌"):
     if message.strip():
-        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        timestamp = datetime.datetime.now(ZoneInfo("Asia/Bangkok")).strftime("%Y-%m-%d %H:%M:%S")
         sheet_chat.append_row([timestamp, sender, message])
         st.success(f"ส่งข้อความเรียบร้อยแล้วงับ 💖 (โดย {sender})")
     else:
